@@ -60,6 +60,8 @@ tasks.withType<ShadowJar>().configureEach {
 tasks.withType<AbstractArchiveTask>().configureEach {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
+
+    from("LICENSE")
 }
 
 tasks.withType<Jar>().configureEach {
