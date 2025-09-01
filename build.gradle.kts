@@ -2,11 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import java.util.jar.Attributes
 
 plugins {
-    alias(libs.plugins.shadow)
-
-    alias(libs.plugins.kotlin.jvm)
-
+    alias(libs.plugins.kotlin)
     application
+
+    alias(libs.plugins.shadow)
 }
 
 repositories {
@@ -14,10 +13,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation(libs.junit.jupiter.engine)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.platform)
 }
 
 java {
