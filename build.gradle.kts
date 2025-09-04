@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import java.util.jar.Attributes
 
 plugins {
@@ -28,58 +27,60 @@ application {
     mainClass = "org.example.AppKt"
 }
 
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-}
+tasks {
+    withType<AbstractArchiveTask> {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
 
-tasks.withType<ShadowJar>().configureEach {
-    minimize()
+        from("LICENSE")
+        from("assets/text/licenses/") {
+            into("licenses/")
+        }
 
-    enableAutoRelocation = true
-    relocationPrefix = "org.example.dependencies"
-}
+        filePermissions {
+            user.read = true
+            user.write = true
+            user.execute = false
 
-tasks.withType<AbstractArchiveTask>().configureEach {
-    isPreserveFileTimestamps = false
-    isReproducibleFileOrder = true
+            group.read = true
+            group.write = false
+            group.execute = false
 
-    from("LICENSE")
-    from("assets/text/licenses/") {
-        into("licenses/")
+            other.read = true
+            other.write = false
+            other.execute = false
+        }
+
+        dirPermissions {
+            user.read = true
+            user.write = true
+            user.execute = true
+
+            group.read = true
+            group.write = false
+            group.execute = true
+
+            other.read = false
+            other.write = false
+            other.execute = true
+        }
     }
 
-    filePermissions {
-        user.read = true
-        user.write = true
-        user.execute = false
-
-        group.read = true
-        group.write = false
-        group.execute = false
-
-        other.read = true
-        other.write = false
-        other.execute = false
+    withType<Jar> {
+        manifest {
+            attributes[Attributes.Name.MAIN_CLASS.toString()] = application.mainClass
+        }
     }
 
-    dirPermissions {
-        user.read = true
-        user.write = true
-        user.execute = true
+    shadowJar {
+        minimize()
 
-        group.read = true
-        group.write = false
-        group.execute = true
-
-        other.read = false
-        other.write = false
-        other.execute = true
+        enableAutoRelocation = true
+        relocationPrefix = "org.example.dependencies"
     }
-}
 
-tasks.withType<Jar>().configureEach {
-    manifest {
-        attributes[Attributes.Name.MAIN_CLASS.toString()] = application.mainClass
+    test {
+        useJUnitPlatform()
     }
 }
 
