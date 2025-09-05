@@ -22,7 +22,7 @@ java {
 }
 
 application {
-    mainClass = "org.example.AppKt"
+    mainClass = "org.example.project.AppKt"
 }
 
 tasks {

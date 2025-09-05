@@ -1,4 +1,4 @@
-package org.example
+package org.example.project
 
 class App {
     val greeting: String
