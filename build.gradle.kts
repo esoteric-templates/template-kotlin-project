@@ -26,18 +26,6 @@ application {
 }
 
 tasks {
-    distTar {
-        from("assets/text/licenses/") {
-            into("licenses/")
-        }
-    }
-
-    distZip {
-        from("assets/text/licenses/") {
-            into("licenses/")
-        }
-    }
-
     withType<AbstractArchiveTask> {
         isPreserveFileTimestamps = false
         isReproducibleFileOrder = true
@@ -70,6 +58,18 @@ tasks {
             other.read = false
             other.write = false
             other.execute = true
+        }
+    }
+
+    distTar {
+        from("assets/text/licenses/") {
+            into("licenses/")
+        }
+    }
+
+    distZip {
+        from("assets/text/licenses/") {
+            into("licenses/")
         }
     }
 
