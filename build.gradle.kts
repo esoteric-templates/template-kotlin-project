@@ -40,8 +40,6 @@ tasks {
         isPreserveFileTimestamps = false
         isReproducibleFileOrder = true
 
-        from("LICENSE")
-
         filePermissions {
             user.read = true
             user.write = true
@@ -87,6 +85,12 @@ tasks {
 //        into("licenses/")
 //    }
 //}
+
+listOf(tasks.jar, tasks.kotlinSourcesJar).forEach {
+    it {
+        from("LICENSE")
+    }
+}
 
 configurations.all {
     resolutionStrategy {
