@@ -31,14 +31,6 @@ description = "A template repository for Kotlin projects"
 //	mainClass = "$group.$name.AppKt"
 //}
 
-version = ProcessBuilder("git", "describe", "--tags", "--always", "--dirty")
-	.directory(project.projectDir)
-	.start()
-	.inputStream
-	.bufferedReader()
-	.readText()
-	.trim()
-
 tasks {
 	withType<AbstractArchiveTask> {
 		isPreserveFileTimestamps = false
@@ -77,7 +69,6 @@ tasks {
 		manifest {
 //			attributes[Attributes.Name.MAIN_CLASS.toString()] = application.mainClass
 			attributes[Attributes.Name.IMPLEMENTATION_TITLE.toString()] = "Template Kotlin Project"
-			attributes[Attributes.Name.IMPLEMENTATION_VERSION.toString()] = project.version
 			attributes[Attributes.Name.IMPLEMENTATION_VENDOR.toString()] = "Дима Ш."
 		}
 	}
