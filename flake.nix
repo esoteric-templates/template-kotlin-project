@@ -56,7 +56,7 @@
 				packages.default = package;
 				packages.deps-update = package.mitmCache.updateScript;
 
-				devShell = pkgs.mkShell {
+				devShells.default = pkgs.mkShell {
 					buildInputs = with pkgs; [
 						git
 						gradle_9
