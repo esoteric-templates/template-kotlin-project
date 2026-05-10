@@ -25,8 +25,6 @@
 
 					nativeBuildInputs = with pkgs; [
 						gradle_9
-						git
-
 						makeWrapper
 					];
 
