@@ -14,9 +14,7 @@
 			let
 				name = "template";
 
-				pkgs = import nixpkgs {
-					inherit system;
-				};
+				pkgs = nixpkgs.legacyPackages.${system};
 
 				package = pkgs.stdenv.mkDerivation (finalAttrs: {
 					inherit name;
