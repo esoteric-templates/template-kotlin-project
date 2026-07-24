@@ -27,7 +27,7 @@
 					];
 
 					buildInputs = with pkgs; [
-						jre
+						openjdk25
 					];
 
 					mitmCache = pkgs.gradle.fetchDeps {
@@ -56,8 +56,9 @@
 
 				devShells.default = pkgs.mkShell {
 					buildInputs = with pkgs; [
-						git
+						openjdk25
 						gradle_9
+						git
 					];
 				};
 			});
