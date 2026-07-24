@@ -18,12 +18,6 @@ dependencies {
 	testRuntimeOnly(libs.junit.platform)
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
-}
-
 group = "org.example"
 description = "A template repository for Kotlin projects"
 
