@@ -22,6 +22,7 @@
 					src = ./.;
 
 					nativeBuildInputs = with pkgs; [
+						openjdk25
 						gradle_9
 						makeWrapper
 					];
